@@ -8,6 +8,7 @@ import static com.org.rohith.Constants.HUNDRED;
 import static com.org.rohith.Constants.THOUSAND;
 import static com.org.rohith.Constants.AND;
 import static com.org.rohith.Constants.EMPTY_STRING;
+import static com.org.rohith.Constants.ZERO;
 
 public class SpellTheNumber 
 {
@@ -30,24 +31,29 @@ public class SpellTheNumber
 		return str;
 	}
 
-	static String convertToWords(long number) 
+	public static String convertToWords(long number) 
 	{
 		String out = EMPTY_STRING;
 
-		out += numToWords((int) (number / 10000000), CRORE);
-
-		out += numToWords((int) ((number / 100000) % 100), LAKH);
-
-		out += numToWords((int) ((number / 1000) % 100), THOUSAND);
-
-		out += numToWords((int) ((number / 100) % 10), HUNDRED);
-
-		if (number > 100 && number % 100 > 0) 
+		if(number==0)
 		{
-			out += AND;
+			out=ZERO;
+		}else
+		{
+			out += numToWords((int) (number / 10000000), CRORE);
+
+			out += numToWords((int) ((number / 100000) % 100), LAKH);
+
+			out += numToWords((int) ((number / 1000) % 100), THOUSAND);
+
+			out += numToWords((int) ((number / 100) % 10), HUNDRED);
+
+			if (number > 100 && number % 100 > 0) 
+			{
+				out += AND;
+			}
+			out += numToWords((int) (number % 100), EMPTY_STRING);
 		}
-		out += numToWords((int) (number % 100), EMPTY_STRING);
 		return out;
 	}
-
 }

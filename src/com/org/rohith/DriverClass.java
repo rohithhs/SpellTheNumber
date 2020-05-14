@@ -11,8 +11,14 @@ public class DriverClass
 	{
 		long number = 0;
 		System.out.println(INPUT_MESSAGE);
+
 		Scanner scanner = new Scanner(System.in);
+		while(!(scanner.hasNextLong())) {
+			scanner.next();
+			System.err.print("Only whole numbers are allowed:Please try again");
+		}
 		number = scanner.nextLong();
+
 		int len = String.valueOf(number).length();	
 		if(len>9)
 		{
